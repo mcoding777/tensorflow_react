@@ -1,38 +1,38 @@
-
-import { RefObject, useEffect, useRef } from 'react';
-import * as mobilenet from '@tensorflow-models/mobilenet';
-import * as tf from '@tensorflow/tfjs';
+import * as tf from '@tensorflow/tfjs'
+import * as mobilenet from '@tensorflow-models/mobilenet'
+import { RefObject, useEffect, useRef } from 'react'
 
 export const ImageClassifier = () => {
-  const camera: RefObject<HTMLVideoElement> = useRef(null);
-  const figures: RefObject<HTMLDivElement> = useRef(null);
-  const webcamElement = camera.current;
+  const camera: RefObject<HTMLVideoElement> = useRef(null)
+  const figures: RefObject<HTMLDivElement> = useRef(null)
+  const webcamElement = camera.current
 
   const run = async () => {
-    const model = await mobilenet.load();
+    const model = await mobilenet.load()
 
     const webcam = await tf.data.webcam(webcamElement || undefined, {
       resizeWidth: 220,
       resizeHeight: 227,
-    });
-    
+    })
+
+    // eslint-disable-next-line no-constant-condition
     while (true) {
-      const img = await webcam.capture();
-      const result = await model.classify(img);
+      const img = await webcam.capture()
+      const result = await model.classify(img)
 
       if (figures.current) {
-        figures.current.innerText = `prediction : ${result[0].className} \n probability: ${result[0].probability}`;
+        figures.current.innerText = `prediction : ${result[0].className} \n probability: ${result[0].probability}`
       }
 
-      img.dispose();
+      img.dispose()
 
-      await tf.nextFrame();
+      await tf.nextFrame()
     }
-  };
-  
-useEffect(()=> {
-  run();
-});
+  }
+
+  useEffect(() => {
+    run()
+  })
 
   return (
     <>
@@ -46,5 +46,5 @@ useEffect(()=> {
         height={534}
       />
     </>
-  );
-};
+  )
+}
