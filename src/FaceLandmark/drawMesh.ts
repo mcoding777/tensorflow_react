@@ -10,12 +10,12 @@ const drawPath = (ctx: CanvasRenderingContext2D, points: Keypoint[], closePath: 
     region.lineTo(point.x, point.y)
   }
 
+  ctx.strokeStyle = 'black'
+  ctx.stroke(region)
+
   if (closePath) {
     region.closePath()
   }
-
-  ctx.strokeStyle = 'black'
-  ctx.stroke(region)
 }
 
 export const drawMesh = (prediction: Face, ctx: CanvasRenderingContext2D) => {

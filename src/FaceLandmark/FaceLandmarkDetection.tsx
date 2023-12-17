@@ -1,7 +1,5 @@
-// import '@tensorflow/tfjs-core';
-// import "@tensorflow/tfjs-converter";
 import '@mediapipe/face_mesh'
-import '@tensorflow/tfjs'
+import '@tensorflow/tfjs-core'
 import '@tensorflow/tfjs-backend-webgl'
 import { RefObject, SyntheticEvent, useRef, useState } from 'react'
 import Webcam from 'react-webcam'

@@ -11,48 +11,62 @@
     "plugins": [],
     "settings": {
         "import/resolver": {
-        "typescript": {},
-        "node": {
-            "extensions": [".ts", ".tsx", ".js", ".jsx"]
-        },
-        },
+            "typescript": {},
+            "node": {
+                "extensions": [
+                    ".ts",
+                    ".tsx",
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        }
     },
     "rules": {
-        "import/default": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
         "@typescript-eslint/explicit-member-accessibility": [
-        "error",
-        {
-            "accessibility": "explicit",
-            "overrides": {
-            "constructors": "no-public"
-            },
-        },
+            "error",
+            {
+                "accessibility": "explicit",
+                "overrides": {
+                    "constructors": "no-public"
+                }
+            }
         ],
         "import/order": [
-        // Import Sort
-        "error",
-        {
-            "groups": ["builtin", "external", ["parent", "sibling"], "index"],
-            "alphabetize": {
-            "order": "asc",
-            "caseInsensitive": true
-            },
-            "newlines-between": "always"
-        },
+            // Import Sort
+            "error",
+            {
+                "groups": [
+                    "builtin",
+                    "external",
+                    [
+                        "parent",
+                        "sibling"
+                    ],
+                    "index"
+                ],
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                },
+                "newlines-between": "always"
+            }
         ],
         "import/no-unresolved": "off",
         "import/no-named-as-default-member": "off",
         "import/no-named-as-default": "off",
         "prettier/prettier": [
-        "error",
-        {
-            "printWidth": 100,
-            "semi": false,
-            "singleQuote": true,
-            "tabWidth": 2,
-            "trailingComma": "all"
-        },
+            "error",
+            {
+                "printWidth": 100,
+                "semi": false,
+                "singleQuote": true,
+                "tabWidth": 2,
+                "trailingComma": "all"
+            }
         ],
         "eol-last": "error"
     }
-  }
+}
