@@ -12,7 +12,6 @@ export const Ground = () => {
       curr.repeat.x = curr.repeat.y = 360 // 텍스쳐를 몇개 반복할건지 (= 이미지 크기 조정)
     },
   )
-  console.log('texture => ', texture)
 
   return (
     <RigidBody>

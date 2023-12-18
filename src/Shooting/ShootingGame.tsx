@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Physics, RigidBody } from '@react-three/rapier'
 
 import { Ground } from './Ground'
+import { Player } from './Player'
 
 const ShootingGame = () => {
   return (
@@ -35,7 +36,7 @@ const ShootingGame = () => {
         <Sky sunPosition={[100, 20, 100]} />
         <Physics gravity={[0, -20, 0]}>
           <Ground />
-          {/* <Player /> */}
+          <Player />
           <RigidBody>
             <mesh position={[0, 3, -5]}>
               <boxGeometry />
