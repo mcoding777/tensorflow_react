@@ -1,6 +1,6 @@
 // import { useTexture } from '@react-three/drei'
 import { useTexture } from '@react-three/drei'
-import { RigidBody } from '@react-three/rapier'
+import { RigidBody, CuboidCollider } from '@react-three/rapier'
 import * as THREE from 'three'
 
 export const Ground = () => {
@@ -14,12 +14,13 @@ export const Ground = () => {
   )
 
   return (
-    <RigidBody>
+    <RigidBody type="fixed" colliders={false}>
       <mesh position={[0, -5, 0]} rotation={new THREE.Euler(-Math.PI / 2)}>
         <planeGeometry args={[500, 500]} />
         <ambientLight intensity={1.5} />
         <meshStandardMaterial color="gray" map={texture} />
       </mesh>
+      <CuboidCollider args={[500, 2, 500]} position={[0, -2, 0]} />
     </RigidBody>
   )
 }

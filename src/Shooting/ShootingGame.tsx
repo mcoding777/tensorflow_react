@@ -29,7 +29,8 @@ const ShootingGame = () => {
       />
       <Canvas
         camera={{
-          fov: 50, // 배율
+          fov: 90, // 배율
+          position: [0, 3, 2],
         }}
       >
         <PointerLockControls />
