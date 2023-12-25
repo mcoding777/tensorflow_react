@@ -11,6 +11,9 @@ const Home = () => {
       <Link to={routes.슈팅게임}>
         <p>shooting game</p>
       </Link>
+      <Link to={routes.마이홈}>
+        <p>My Home</p>
+      </Link>
     </>
   )
 }
