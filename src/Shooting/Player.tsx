@@ -1,6 +1,6 @@
 import * as RAPIER from '@dimforge/rapier3d-compat'
 import { useFrame } from '@react-three/fiber'
-import { RapierRigidBody, RigidBody, useRapier } from '@react-three/rapier'
+import { CapsuleCollider, RapierRigidBody, RigidBody, useRapier } from '@react-three/rapier'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 
@@ -14,6 +14,7 @@ const KEYS = {
 
 const MOVE_SPEED = 5
 
+// 3D 벡터 객체
 const direction = new THREE.Vector3()
 const frontVector = new THREE.Vector3()
 const sideVector = new THREE.Vector3()
@@ -77,8 +78,11 @@ export const Player = () => {
     frontVector.set(0, 0, +backward - +forward)
     sideVector.set(+left - +right, 0, 0)
 
-    // 이동 벡터를 제외하고 결과를 정규화(벡터 길이가 1이 되도록)해서 이동속도 상수를 곱하여 플레이어 이동의 최종 벡터 계산
-    direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(MOVE_SPEED)
+    direction
+      .subVectors(frontVector, sideVector) // 벡터 값 : frontVector - sideVector
+      .normalize() // 벡터 길이가 1이 되도록 정규화
+      .multiplyScalar(MOVE_SPEED) // 이동속도 상수를 곱셈
+      .applyEuler(state.camera.rotation) // 오일러 각도(https://m.blog.naver.com/sorang226/223006372594)를 기반으로 회전 적용
 
     // 계산된 이동 방향을 기반으로 플레이어의 새로운 선형 속도를 설정하고 수직 속도 유지 (점프나 추락에 영향을 주지 않도록)
     playerRef.current.setLinvel(
@@ -106,12 +110,17 @@ export const Player = () => {
     const grounded = ray && ray.collider && Math.abs(ray.toi) <= 1
 
     if (jump && grounded) doJump()
+
+    /////////// 카메라 무빙
+
+    const { x, y, z } = playerRef.current.translation()
+    state.camera.position.set(x, y, z)
   })
 
   return (
     <RigidBody position={[0, 1, -2]} ref={playerRef} mass={1} lockRotations>
       <mesh>
-        <capsuleGeometry args={[0.5, 0.5]} />
+        <CapsuleCollider args={[0.75, 0.5]} />
       </mesh>
     </RigidBody>
   )

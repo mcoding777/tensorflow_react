@@ -29,8 +29,9 @@ const ShootingGame = () => {
       />
       <Canvas
         camera={{
-          fov: 90, // 배율
-          position: [0, 3, 2],
+          fov: 100, // 시야각
+          position: [0, 2, 30],
+          far: 100,
         }}
       >
         <PointerLockControls />
@@ -39,6 +40,7 @@ const ShootingGame = () => {
           <Ground />
           <Player />
           <RigidBody>
+            {/*  */}
             <mesh position={[0, 3, -5]}>
               <boxGeometry />
             </mesh>
