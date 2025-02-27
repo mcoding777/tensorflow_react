@@ -14,7 +14,7 @@ const Myhome = () => {
         height: '100vh',
       }}
     >
-      <Canvas shadows camera={{ position: [10, 25, 25], fov: 80, aspect }}>
+      <Canvas shadows camera={{ position: [25, 35, 45], fov: 60, aspect }}>
         <color attach="background" args={['#eaeaea']} />
         <Physics>
           <Room />
